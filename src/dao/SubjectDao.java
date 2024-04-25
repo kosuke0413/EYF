@@ -14,14 +14,14 @@ public class SubjectDao extends Dao{
 
 	private String baseSql = "select * from subject where school_cd=? ";
 
-
+//ゲット
 	public Subject get(String cd)throws Exception{
 
 		Subject subject=new Subject();
 		Connection connection=getConnection();
 		PreparedStatement statement=null;
 
-		try{
+		try{   //科目コード別に作成
 			statement=connection.prepareStatement("select * from subject where cd=?");
 			statement.setString(1, cd);
 			ResultSet rSet=statement.executeQuery();
@@ -41,7 +41,6 @@ public class SubjectDao extends Dao{
 			} }catch (Exception e) {
 				throw e;
 			} finally {
-				//
 				if(statement != null) {
 					try {
 						statement.close();
@@ -53,6 +52,8 @@ public class SubjectDao extends Dao{
 		return subject;
 	}
 
+
+	//filterを作るために作ったようわからん奴
 	public List<Subject> postFilter(ResultSet rSet,School school) throws Exception {
 		//戻り値用のリスト
 		List<Subject> list = new ArrayList<>();
@@ -72,7 +73,7 @@ public class SubjectDao extends Dao{
 		}
 		return list;
 	}
-
+	//フィルター（出力）
 	public List<Subject> filter(School school)throws Exception {
 		//リストを初期化
 	    List<Subject> list = new ArrayList<>();
@@ -120,7 +121,7 @@ public class SubjectDao extends Dao{
 
 
 
-	//セーブ
+	//セーブ（更新＆作成用）
 	public boolean save(Subject subject) throws Exception {
 		//コネクションを確立
 		Connection connection = getConnection();
