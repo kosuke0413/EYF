@@ -11,7 +11,7 @@
 <body>
 
 	<h2>学生管理</h2>
-<!--	<a href="StudentCreate.action">新規登録</a>-->
+<a href="SubjectCreate.action">新規登録</a>
 <form method="get">
 	</form>
 	<c:choose>
@@ -24,7 +24,7 @@
 					<th>科目名</th>
 					<th></th>
 					<th></th>
-				</tr>
+				</tr><!-- 科目件数分の表示 -->
 				<c:forEach var="subject" items="${subjects}">
 					<tr>
 						<td>${subject.cd}</td>
@@ -32,11 +32,15 @@
 						<td class="text-center">
 
 						</td>
-			<!-- 		<td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>-->
+		<!-- 二つともまだできてない -->
+		<!-- <td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>-->
+		<!-- 	<td><a href="StudentUpdate.action?no=${student.no}">削除</a></td>-->
 					</tr>
 				</c:forEach>
 			</table>
 		</c:when>
+
+		<!-- もし件数が一個もなかった場合 -->
 		<c:otherwise>
 			<div>学生情報が存在しませんでした</div>
 		</c:otherwise>
