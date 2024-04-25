@@ -27,7 +27,8 @@ public class TestListAction extends Action{
 
 		String entYearStr="";// 入力された入学年度
 		String classNum = "";//入力されたクラス番号
-		String isAttendStr="";//入力された在学フラグ
+		String subjectCd = "";//入力された科目
+
 		int entYear = 0;// 入学年度
 		boolean isAttend = false;// 在学フラグ
 		List<Student> students = null;// 学生リスト
@@ -105,14 +106,6 @@ public class TestListAction extends Action{
 		req.setAttribute("ent_year_set", entYearSet);
 		//JSPへフォワード 7
 		req.getRequestDispatcher("student_list.jsp").forward(req, res);
-	}
-
-	private void setTestListSubject(HttpServletRequest req,HttpServletResponse res){
-
-	}
-
-	private void setTestListStudent(HttpServletRequest req,HttpServletResponse res){
-
 	}
 
 }
