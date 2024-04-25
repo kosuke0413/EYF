@@ -9,7 +9,7 @@ public class Dao {
 	/**
 	 * データソース:DataSource:クラスフィールド
 	 */
-	static DataSource ds;
+	static protected DataSource ds;
 
 	/**
 	 * getConnectionメソッド データベースへのコネクションを返す
