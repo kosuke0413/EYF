@@ -37,10 +37,9 @@
 		<!-- 	<td><a href="StudentUpdate.action?no=${student.no}">削除</a></td>-->
 					</tr>
 				</c:forEach>
+
 			</table>
 		</c:when>
-
-		<!-- もし件数が一個もなかった場合 -->
 		<c:otherwise>
 			<div>学生情報が存在しませんでした</div>
 		</c:otherwise>
