@@ -8,13 +8,14 @@
 </head>
 <body>
 
-<h2>メニュー</h2>
+<form action = "Logout.action" method="post">
 
-<a href="StudentList.action">学生管理</a>
-<a href="#">成績登録</a>
-<a href="#">成績参照</a>
-<a href="SubjectList.action">科目管理</a>
-<a href="Logout.action">ログアウト</a>
+<h2><label>
+ログアウト
+</label></h2>
+
+<a href="Login.action">ログインへ</a>
+</form>
 
 </body>
 </html>

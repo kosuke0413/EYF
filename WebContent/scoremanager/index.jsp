@@ -14,6 +14,7 @@ location.href="/exam417/scoremanager/Login.action";
 <body>
 
 </body>
+
 </html>
 <!-- 変更してみたよ -->
 <!-- ohaよ -->
