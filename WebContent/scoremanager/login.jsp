@@ -21,7 +21,9 @@
 	required:input要素を入力必須にする属性
  -->
 
-	<!-- ＩＤ -->
+
+	<h2>ログイン</h2>
+	<!-- ログインＩＤ -->
 	<label>ＩＤ</label>
 	<input type="text" name="id" maxlength="20" placeholder="20文字以内の半角英数字でご入力下さい"
 	 autocomplete="off" style="ime-mode: disabled" value="admin2" required/>
@@ -30,13 +32,21 @@
 	<label>パスワード</label>
 	<input type="password" name="password" value="pasword">
 
+	<!-- パスワード表示チェックボックス -->
+	<input id="inputCheckbox" type="checkbox">
+
+
+
 	<!-- 名前 -->
+	<!--
 	<label>名前</label>
 	<input type="text" name="namae" value="林">
 
 	<!-- 学校コード -->
-	<label>学校コード</label>
+	<!--
+	 <label>学校コード</label>
 	<input type="text" name="school_cd" value="knz">
+	 -->
 
 	<!-- ログイン用ボタン -->
 	<input type="submit" name="login" value="ログイン"/>
