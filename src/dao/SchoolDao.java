@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import bean.School;
+import bean.Test;
 
 public class SchoolDao extends Dao {
 	/**
@@ -16,7 +17,7 @@ public class SchoolDao extends Dao {
 	 * @return 学校クラスのインスタンス 存在しない場合はnull
 	 * @throws Exception
 	 */
-	public School get(String cd) throws Exception {
+	public Test get(String cd) throws Exception {
 		// 学校インスタンスを初期化
 		School school = new School();
 		// データベースへのコネクションを確率
