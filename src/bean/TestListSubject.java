@@ -1,21 +1,17 @@
-package scoremanager.main;
+package bean;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class TestListSubject {
+public class TestListSubject implements Serializable{
 	private int entYear;
 	private String studentNo;
 	private String studentName;
 	private String classNum;
 	private Map<Integer,Integer> points;
 
-	public TestListSubject(int entYear, String studentNo, String studentName, String classNum,
-			Map<Integer, Integer> points) {
-		this.entYear = entYear;
-		this.studentNo = studentNo;
-		this.studentName = studentName;
-		this.classNum = classNum;
-		this.points = points;
+	public TestListSubject() {
+
 	}
 
 	public int getEntYear() {
@@ -58,12 +54,20 @@ public class TestListSubject {
 		this.points = points;
 	}
 
+	//Pointsの中からキーの位置の値を返す
 	public String getPoint(int key) {
-		return point;
+		if(points.get(key) != null){
+			int value = (points.get(key));
+				return String.valueOf(value);
+		}
+		else{
+			return("うんこ");
+		}
 	}
 
-	public void setPoint(int key,int value) {
-		this.points = point;
+	//Pointsのキーの位置に値を入れる
+	public void putPoint(int key,int value) {
+		points.put(key, value);
 	}
 
 

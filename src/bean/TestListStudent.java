@@ -1,6 +1,8 @@
-package scoremanager.main;
+package bean;
 
-public class TestListStudent {
+import java.io.Serializable;
+
+public class TestListStudent implements Serializable{
 	private String subjectName;
 	private String subjectCd;
 	private int num;
