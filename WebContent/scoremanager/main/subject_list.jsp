@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<h2>学生管理</h2>
+	<h2>科目管理</h2>
 <a href="SubjectCreate.action">新規登録</a>
 <form method="get">
 	</form>
@@ -32,8 +32,8 @@
 						<td class="text-center">
 
 						</td>
-		<!-- 二つともまだできてない -->
-		<!-- <td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>-->
+		<!-- 削除はまだできてない -->
+		 <td><a href="SubjectUpdate.action?cd=${subject.cd}">変更</a></td>
 		<!-- 	<td><a href="StudentUpdate.action?no=${student.no}">削除</a></td>-->
 					</tr>
 				</c:forEach>
@@ -44,6 +44,7 @@
 			<div>学生情報が存在しませんでした</div>
 		</c:otherwise>
 	</c:choose>
+	<a href="Menu.action">メインへ戻る</a>
 
 </body>
 </html>

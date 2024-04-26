@@ -30,8 +30,8 @@ public class SubjectListAction extends Action {
 		String cdStr="";  //科目コード
 		List<Subject> subjects = null;// 科目リスト→JSPにあげるやつ
 		LocalDate todaysDate = LocalDate.now();// LcalDateインスタンスを取得
-		SubjectDao sDao = new SubjectDao();//学生Dao
-		ClassNumDao cNumDao = new ClassNumDao();// クラス番号Daoを初期化
+		SubjectDao sDao = new SubjectDao();//科目bDao
+		ClassNumDao cNumDao = new ClassNumDao();// クラスコードDaoを初期化
 		Map<String, String> errors = new HashMap<>();// エラーメッセージ
 
 		//DBからデータ取得 3
@@ -40,11 +40,11 @@ public class SubjectListAction extends Action {
 
 		nameStr = req.getParameter("f1");
 		cdStr = req.getParameter("f2");
-		subjects = sDao.filter(teacher.getSchool());
+		subjects = sDao.filter(teacher.getSchool());  //学校別の科目
 
 
 		req.setAttribute("f2", cdStr);
-		// リクエストにクラス番号をセット
+		// リクエストに科目番号をセット
 		req.setAttribute("f1", nameStr);
 
 		// リクエストに科目リストをセット

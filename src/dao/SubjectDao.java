@@ -30,13 +30,13 @@ public class SubjectDao extends Dao{
 
 			if (rSet.next()) {
 				subject.setCd(rSet.getString("cd"));
-				subject.setCd(rSet.getString("name"));
-				//学校フィールドには学校コードで検索した学校インスタンスをセット
+				subject.setName(rSet.getString("name"));
+				//科目フィールドには学校コードで検索した学校インスタンスをセット
 				subject.setSchool(schoolDao.get(rSet.getString("school_cd")));
 
 			} else {
 				//リザルトセットが存在しない場合
-				//学生インスタンスにnullをセット
+				//科目インスタンスにnullをセット
 				subject= null;
 			} }catch (Exception e) {
 				throw e;
@@ -59,9 +59,9 @@ public class SubjectDao extends Dao{
 		List<Subject> list = new ArrayList<>();
 		try{
 			while(rSet.next()) {
-				//学生インスタンスを初期化
+				//科目インスタンスを初期化
 				Subject subject = new Subject();
-				//学生インスタンスに検索結果をセット
+				//科目インスタンスに検索結果をセット
 				subject.setCd(rSet. getString("cd"));
 				subject.setName (rSet. getString("name"));
 				subject.setSchool (school);
@@ -83,8 +83,6 @@ public class SubjectDao extends Dao{
 	    PreparedStatement statement = null;
 	    //リザルトセット
 	    ResultSet rSet = null;
-	    //SQL文の条件
-	    String condition = "and ent_year =? and class_num =? ";
 	    try {
 		    //プリペアードステートメントにSQL文をセット
 		    statement = connection. prepareStatement (baseSql);
@@ -131,10 +129,10 @@ public class SubjectDao extends Dao{
 		int count = 0;
 
 		try{
-			//データベースから学生を取得
+			//データベースから科目を取得
 			Subject old = get(subject.getCd());
 			if (old == null) {
-				//学生が存在しなかった場合
+				//科目（CD)が存在しなかった場合
 				//プリペアードステートメンにINSERT文をセット
 				statement = connection.prepareStatement(
 						"insert into subject (school_cd, cd, name,) values(?, ?, ?,) ");
@@ -146,11 +144,10 @@ public class SubjectDao extends Dao{
 				//学生が存在した場合
 				//プリペアードステートメントにUPDATE文をセット
 				statement = connection
-						.prepareStatement("update subject set name=?, school=?,cd=?,where no=?");
+						.prepareStatement("update subject set name=? where cd=?");
 				//プリペアードステートメントに値をバインド
-				statement.setString(1, subject.getSchool().getCd());
 				statement.setString(2,subject.getCd());
-				statement.setString(3,subject.getName());
+				statement.setString(1,subject.getName());
 			}
 
 			//プリペアードステートメントを実行
