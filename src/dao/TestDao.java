@@ -25,7 +25,7 @@ public class TestDao extends Dao {
         try {
             statement = connection.prepareStatement(baseSql + "student_no=? AND subject_id=? AND school_id=? AND test_no=?");
             statement.setString(1, student.getNo());
-            statement.setInt(2, subject.getId());
+            statement.setString(2, subject.getCd());
             statement.setString(3, school.getCd());
             statement.setInt(4, no);
 
@@ -60,7 +60,7 @@ public class TestDao extends Dao {
             statement = connection.prepareStatement(sql);
             statement.setInt(1, entYear);
             statement.setString(2, classNum);
-            statement.setInt(3, subject.getId());
+            statement.setString(3, subject.getCd());
             statement.setInt(4, num);
             statement.setString(5, school.getCd());
 
@@ -92,7 +92,7 @@ public class TestDao extends Dao {
             if (test.getNo() == 0) {  // 新規登録の場合
                 statement = connection.prepareStatement("INSERT INTO tests (student_no, subject_id, school_id, test_no, point, class_num) VALUES (?, ?, ?, ?, ?, ?)");
                 statement.setString(1, test.getStudent().getNo());
-                statement.setInt(2, test.getSubject().getId());
+                statement.setString(2, test.getSubject().getCd());
                 statement.setString(3, test.getSchool().getCd());
                 statement.setInt(4, test.getNo());
                 statement.setInt(5, test.getPoint());
