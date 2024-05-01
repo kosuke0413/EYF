@@ -16,7 +16,7 @@ import dao.ClassNumDao;
 import dao.StudentDao;
 import tool.Action;
 
-public class TestListAction extends Action{
+public class TestListAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -27,8 +27,7 @@ public class TestListAction extends Action{
 
 		String entYearStr="";// 入力された入学年度
 		String classNum = "";//入力されたクラス番号
-		String subjectCd = "";//入力された科目
-
+		String isAttendStr="";//入力された在学フラグ
 		int entYear = 0;// 入学年度
 		boolean isAttend = false;// 在学フラグ
 		List<Student> students = null;// 学生リスト
@@ -105,7 +104,11 @@ public class TestListAction extends Action{
 		req.setAttribute("class_num_set", list);
 		req.setAttribute("ent_year_set", entYearSet);
 		//JSPへフォワード 7
-		req.getRequestDispatcher("student_list.jsp").forward(req, res);
+		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
 	}
 
 }
+
+
+
+

@@ -82,6 +82,11 @@ public class Test {
 		this.point = point;
 	}
 
+	public void setSubject(bean.Subject subject2) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
 
 
 }
