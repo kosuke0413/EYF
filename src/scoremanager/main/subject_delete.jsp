@@ -13,7 +13,7 @@
 	<form action = "SubjectDeleteExecute.action" method="post">
 
 
-		<label>科目番号</label> ${cd}
+		<label>科目コード</label> ${cd}
 		<input type="hidden" name="cd" value="${cd}">
 		<p>を削除しますか？</p>
 
