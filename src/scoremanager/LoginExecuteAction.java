@@ -23,7 +23,6 @@ public class LoginExecuteAction extends Action{
 		String password = req.getParameter("password");
 		String name = req.getParameter("namae");
 		String school_cd = req.getParameter("school_cd");
-		String chk_d_ps = req.getParameter("chk_d_ps");
 
 		//DBからデータ取得 3
 		//なし
@@ -44,7 +43,7 @@ public class LoginExecuteAction extends Action{
 		//Sessionを有効にする
 		HttpSession session = req.getSession(true);
 		//セッションに"user"という変数名で値はTeacher変数の中身
-		session.setAttribute("user", teacher);//EL式でヘッダーに作る
+		session.setAttribute("user", teacher);
 
 		//DBへデータ保存 5
 		//なし
@@ -57,5 +56,4 @@ public class LoginExecuteAction extends Action{
 		url = "main/Menu.action";
 		res.sendRedirect(url);
 	}
-
 }
