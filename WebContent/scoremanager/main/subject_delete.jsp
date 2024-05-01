@@ -1,4 +1,4 @@
-<%-- 科目更新完了JSP --%>
+<%-- 科目更新JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -9,9 +9,19 @@
 <title>得点管理システム</title>
 </head>
 <body>
-	<h2>科目情報変更</h2>
-		<p>変更が完了しました</p>
-	<a href="SubjectList.action">科目一覧</a>
+	<h2>科目情報削除</h2>
+	<form action = "SubjectDeleteExecute.action" method="post">
+
+
+		<label>科目番号</label> ${cd}
+		<input type="hidden" name="cd" value="${cd}">
+		<p>を削除しますか？</p>
+
+		<input type="submit" value="削除">
+
+	</form>
+
+	<a href="Menu.action">戻る</a>
+
 </body>
 </html>
-
