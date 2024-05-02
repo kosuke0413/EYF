@@ -21,9 +21,9 @@ public class TestListStudentDao extends Dao{
 				//学生インスタンスを初期化
 				TestListStudent testliststudent = new TestListStudent();
 				//学生インスタンスに検索結果をセット
-				testliststudent.setSubjectName(rSet. getString("subject_name"));
+				testliststudent.setSubjectName(rSet. getString("name"));
 				testliststudent.setSubjectCd (rSet. getString("subject_cd"));
-				testliststudent.setNum (rSet. getInt("num"));
+				testliststudent.setNum (rSet. getInt("no"));
 				testliststudent.setPoint(rSet. getInt("point"));
 
 				//リストに追加
@@ -50,7 +50,7 @@ public class TestListStudentDao extends Dao{
 
 	    try {
 		    //プリペアードステートメントにSQL文をセット
-		    statement = connection. prepareStatement ("SELECT DISTINCT s.NAME,t.SUBJECT_CD,t.NO,t.POINT FROM SUBJECT s JOIN TEST t ON s.CD = t.SUBJECT_CD WHERE STUDENT_NO = '?' order by t.no asc");
+		    statement = connection. prepareStatement ("SELECT DISTINCT s.NAME,t.SUBJECT_CD,t.NO,t.POINT FROM SUBJECT s JOIN TEST t ON s.CD = t.SUBJECT_CD WHERE STUDENT_NO = ? order by t.no asc");
 		    //プリペアードステートメントに学校コードをバインド
 		    statement. setString(1, student. getNo ());
 		    // プライベートステートメントを実行

@@ -12,7 +12,7 @@
 	<h1>成績参照</h1>
 
 	<h3>科目情報</h3>
-	<form action = "TestListSubjectExecute.action" method="post">
+	<form action = "TestSubjectExecute.action" method="post">
 		<label>入学年度</label>
 		<select name="ent_year">
 			<option value="0">--------</option>
@@ -42,7 +42,7 @@
 	</form>
 
 	<h3>学生情報</h3>
-	<form action = "TestListStudentExecute.action" method="post">
+	<form action = "TestStudentExecute.action" method="post">
 		<label>学生番号</label>
 		<input type="text" name="no"
 			placeholder="学生番号を入力してください" maxlength="10" value="${no}" required />
@@ -50,7 +50,40 @@
 		<input type="submit" value="検索">
 	</form>
 
+	<p>${stu_name}</p>
+	<c:choose>
+		<c:when test="${test_students.size()>0}">
+			<div>検索結果：${test_students.size()}件</div>
+
+			<table class="table table-hover">
+				<tr>
+					<th>科目名</th>
+					<th>科目コード</th>
+					<th>回数</th>
+					<th>点数</th>
+					<th></th>
+					<th></th>
+				</tr>
+				<c:forEach var="student" items="${test_students}">
+					<tr>
+						<td>${student.subjectName}</td>
+						<td>${student.subjectCd}</td>
+						<td>${student.num}</td>
+						<td>${student.point}</td>
+						<td class="text-center">
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:when>
+		<c:otherwise>
+			<div>学生情報が存在しませんでした</div>
+		</c:otherwise>
+	</c:choose>
+
 	<a href="Menu.action">戻る</a>
+
+
 
 </body>
 </html>
