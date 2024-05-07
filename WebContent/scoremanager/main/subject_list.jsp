@@ -34,7 +34,7 @@
 						</td>
 		<!-- 削除はまだできてない -->
 		 <td><a href="SubjectUpdate.action?cd=${subject.cd}">変更</a></td>
-		<td><a href="StudentUpdate.action?no=${student.cd}">削除</a></td>
+		<td><a href="SubjectDelete.action?no=${student.cd}">削除</a></td>
 					</tr>
 				</c:forEach>
 

@@ -3,11 +3,19 @@ import java.io.Serializable;
 
 public class Subject implements Serializable{
 
+	private static final boolean False = false;
 	//SBUJECTの中身を設定
 	private School School;
 	private String cd;
 	private String name;
+	private boolean isAttend;
 
+	public boolean isAttend() {
+		return isAttend;
+	}
+	public void setAttend(boolean isAttend) {
+		this.isAttend = false;
+	}
 	//ゲッターとセッタ＝
 	public School getSchool() {
 		return School;
