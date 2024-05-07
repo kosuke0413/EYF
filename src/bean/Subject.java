@@ -10,12 +10,7 @@ public class Subject implements Serializable{
 	private String name;
 	private boolean isAttend;
 
-	public boolean isAttend() {
-		return isAttend;
-	}
-	public void setAttend(boolean isAttend) {
-		this.isAttend = false;
-	}
+
 	//ゲッターとセッタ＝
 	public School getSchool() {
 		return School;
@@ -34,6 +29,12 @@ public class Subject implements Serializable{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public boolean isAttend() {
+		return isAttend;
+	}
+	public void setAttend(boolean isAttend) {
+		this.isAttend = isAttend;
 	}
 
 

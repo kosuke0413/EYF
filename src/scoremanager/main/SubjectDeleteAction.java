@@ -40,7 +40,6 @@ public class SubjectDeleteAction extends Action {
 		req.setAttribute("class_num_set", list);
 		if (subject != null) {// 科目が存在していた場合
 			req.setAttribute("cd", subject.getCd());
-			req.setAttribute("name", subject.getName());
 
 
 		} else {// 科目が存在していなかった場合

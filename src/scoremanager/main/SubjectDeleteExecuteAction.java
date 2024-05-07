@@ -25,6 +25,7 @@ public void execute(HttpServletRequest req, HttpServletResponse res) throws Exce
 	//リクエストパラメータ―の取得 2
 	//リクエストパラメータ―の取得 2
 			String cd = req.getParameter("cd");
+			System.out.println(cd);
 
 			//DBからデータ取得 3
 			Subject subject = sDao.get(cd);// 科目コードから科目インスタンスを取得
@@ -37,7 +38,7 @@ public void execute(HttpServletRequest req, HttpServletResponse res) throws Exce
 				// 科目が存在していた場合
 				// インスタンスに値をセット
 				subject.setCd(cd);
-
+				//削除文の実行
 				sDao.delete(subject);
 			} else {
 				errors.put("cd", "学生が存在していません");

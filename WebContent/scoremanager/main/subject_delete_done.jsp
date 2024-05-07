@@ -11,7 +11,7 @@
 <body>
 	<h2>学生情報削除</h2>
 		<p>削除が完了しました</p>
-	<a href="SubjectList.action">科目</a>
+	<a href="SubjectList.action">科目一覧</a>
 </body>
 </html>
 
