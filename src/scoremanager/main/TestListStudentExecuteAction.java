@@ -8,40 +8,48 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Student;
 import bean.Subject;
 import bean.Teacher;
+import bean.TestListStudent;
 import dao.ClassNumDao;
+import dao.StudentDao;
 import dao.SubjectDao;
+import dao.TestListStudentDao;
 import tool.Action;
 
-public class TestListAction extends Action {
+public class TestListStudentExecuteAction extends Action {
 
-	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		//ローカル変数の宣言 1
 		HttpSession session = req.getSession();//セッション
 		Teacher teacher = (Teacher)session.getAttribute("user");//ログインユーザー
+		StudentDao sDao = new StudentDao();//学生Dao
+		String no = "";//学生番号
+		Student student = null;//学生
+		String stuName; //学生名
+		TestListStudentDao testLisStuDao = new TestListStudentDao();
+		List<TestListStudent> testStulist = null;
 
-<<<<<<< HEAD
-		String entYearStr="";// 入力された入学年度
-		String classNum = "";//入力されたクラス番号
-		String isAttendStr="";//入力された在学フラグ
-		int entYear = 0;// 入学年度
-		boolean isAttend = false;// 在学フラグ
-		List<Student> students = null;// 学生リスト
-=======
->>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
 		LocalDate todaysDate = LocalDate.now();// LcalDateインスタンスを取得
 		int year = todaysDate.getYear();// 現在の年を取得
 		ClassNumDao cNumDao = new ClassNumDao();// クラス番号Daoを初期化
 		SubjectDao subDao = new SubjectDao();   // 科目Daoを初期化
+
+		//リクエストパラメータ―の取得 2
+		no = req.getParameter("no");//学生番号
 
 		//DBからデータ取得 3
 		// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 		List<String> cNumlist = cNumDao.filter(teacher.getSchool());
 		//ログインユーザーの学校コードをもとに科目の一覧を取得
 		List<Subject> sublist = subDao.filter(teacher.getSchool());
+
+		student = sDao.get(no);// 学生番号から学生インスタンスを取得
+		stuName = student.getName(); //学生番号から学生の名前を取得
+
+		testStulist = testLisStuDao.Filter(student);
 
 		// リストを初期化
 		List<Integer> entYearSet = new ArrayList<>();
@@ -57,16 +65,21 @@ public class TestListAction extends Action {
 		req.setAttribute("ent_year_set", entYearSet); //リクエストに10年前から1年後の入学年度をセット
 		req.setAttribute("class_num_set", cNumlist);  //ログインしてる先生の学校のクラス番号をセット
 		req.setAttribute("subject_list_set", sublist);//ログインしてる先生の学校の科目名をセット
+		req.setAttribute("stu_name", stuName);//検索した学生の名前をセット
+
+		// リクエストに学生リストをセット
+		req.setAttribute("test_students", testStulist);
+
+
 
 		//JSPへフォワード 7
-<<<<<<< HEAD
-		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
-=======
-		req.getRequestDispatcher("test_list.jsp").forward(req, res);
->>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
+		req.getRequestDispatcher("test_list_student.jsp").forward(req, res);
 	}
 
 }
+
+
+
 
 
 
