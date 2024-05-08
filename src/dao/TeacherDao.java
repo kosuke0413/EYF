@@ -41,6 +41,7 @@ public class TeacherDao extends Dao{
 			SchoolDao schoolDao = new SchoolDao();
 
 			//取得した教員ID、パスワード、教員名、学校コードをteacherインスタンスに保存
+			//セットするものは[password]じゃなくて「pasword]だよ
 			if(rSet.next()) {
 				teacher.setId(rSet.getString("id"));
 				teacher.setPassword("pasword");
@@ -89,6 +90,7 @@ public class TeacherDao extends Dao{
 		//プリペアードステートメント
 		PreparedStatement statement = null;
 
+		//pas  wordだよ
 		String condition = " and pasword=?";
 
 		//結果を格納するTeacherを初期化
@@ -107,7 +109,7 @@ public class TeacherDao extends Dao{
 			SchoolDao schoolDao = new SchoolDao();
 
 
-				//ここ変えたよ
+			//受け取ったものをセットする
 			//取得した教員ID、パスワード、教員名、学校コードをteacherインスタンスに保存
 			if(rSet.next()) {
 				teacher.setId(rSet.getString("id"));

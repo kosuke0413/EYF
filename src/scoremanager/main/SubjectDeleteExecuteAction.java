@@ -34,11 +34,13 @@ public void execute(HttpServletRequest req, HttpServletResponse res) throws Exce
 			//ビジネスロジック 4
 			//DBへデータ保存 5
 			//条件で4～5が分岐
+
+			System.out.println("DeleteExecute"+cd);
 			if (subject != null) {
 				// 科目が存在していた場合
 				// インスタンスに値をセット
 				subject.setCd(cd);
-				//削除文の実行
+
 				sDao.delete(subject);
 			} else {
 				errors.put("cd", "学生が存在していません");

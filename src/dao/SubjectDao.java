@@ -201,15 +201,11 @@ public class SubjectDao extends Dao{
 				Connection connection = getConnection();
 				//プリペアードステートメント
 				PreparedStatement statement = null;
-				//実行できた件数
+				//実行件数
 				int count = 0;
 
 				try{   //科目コード別に作成
-					//CDをもとにそのデータのすべてを取得
 					Subject old = get(subject.getCd());
-
-					//自分のログインしている学校の指定したCDのものを更新
-					//trueをfalseにすることで消してはいないが表示しないことにする
 					statement=connection.prepareStatement("update subject set is_attend=false where cd=? and school_cd=?");
 					statement.setString(1, subject.getCd());
 					statement. setString(2, subject.getSchool().getCd());
@@ -225,7 +221,7 @@ public class SubjectDao extends Dao{
 						}
 					}
 				}
-				//実行結果が一つ以上なら成功！
+
 				if(count > 0){
 					return true;
 				}else{

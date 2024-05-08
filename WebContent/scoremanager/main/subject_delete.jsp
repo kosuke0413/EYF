@@ -13,8 +13,9 @@
 	<form action = "SubjectDeleteExecute.action" method="post">
 
 
-		<label>科目番号</label> ${cd}
+		<label>科目番号</label>
 		<input type="hidden" name="cd" value="${cd}">
+	   <p>${cd}</p>
 
 		<p>を削除しますか？</p>
 
@@ -23,6 +24,5 @@
 	</form>
 
 	<a href="Menu.action">戻る</a>
-
 </body>
 </html>

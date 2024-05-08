@@ -32,6 +32,7 @@ public class SubjectDeleteAction extends Action {
 		Subject subject = sDao.get(cd);//科目コードから科目インスタンスを取得
 		List<String> list = cNumDao.filter(teacher.getSchool());//ログインユーザーの学校コードをもとに科目の一覧を取得
 
+			System.out.println("DeleteAction"+cd);
 
 		//ビジネスロジック 4
 		//DBへデータ保存 5
