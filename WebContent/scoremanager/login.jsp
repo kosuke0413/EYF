@@ -48,6 +48,10 @@
 	<input type="text" name="school_cd" value="knz">
 	 -->
 
+	 <c:forEach var="error" items="${errors}">
+	 <li>${errors}</li>
+	 </c:forEach>
+
 	<!-- ログイン用ボタン -->
 	<input type="submit" name="login" value="ログイン"/>
 
