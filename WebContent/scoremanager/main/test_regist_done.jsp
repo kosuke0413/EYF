@@ -1,0 +1,17 @@
+<%-- 成績登録完了JSP --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>成績管理システム</title>
+</head>
+<body>
+	<h2>成績登録</h2>
+		<p>成績登録が完了しました</p>
+		<a href="Menu.action">戻る</a>
+	<a href="TestList.action"></a>
+</body>
+</html>

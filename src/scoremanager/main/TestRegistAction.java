@@ -1,6 +1,9 @@
 
+<<<<<<< HEAD
 package scoremanager.main;
 
+=======
+>>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

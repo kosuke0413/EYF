@@ -61,4 +61,8 @@ public void execute(HttpServletRequest req, HttpServletResponse res) throws Exce
 
 			req.getRequestDispatcher("subject_delete_done.jsp").forward(req, res);
 		}
+<<<<<<< HEAD
 	}
+=======
+	}
+>>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
