@@ -76,7 +76,4 @@ public class LoginExecuteAction extends Action{
 
 	}
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git

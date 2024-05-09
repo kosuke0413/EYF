@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.School;
 import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDao;
@@ -24,13 +25,14 @@ public class SubjectUpdateExecuteAction extends Action {
 		Teacher teacher = (Teacher)session.getAttribute("user");// ログインユーザーを取得
 		ClassNumDao cNumDao = new ClassNumDao();// クラス番号Daoを初期化
 		Map<String, String> errors = new HashMap<>();//エラーメッセージ
+		School school = teacher.getSchool();
 
 		//リクエストパラメータ―の取得 2
 		String cd = req.getParameter("cd");
 		String name = req.getParameter("name");
 
 		//DBからデータ取得 3
-		Subject subject = sDao.get(cd);// 科目コードから科目インスタンスを取得
+		Subject subject = sDao.get(cd,school);// 科目コードから科目インスタンスを取得
 		List<String> list = cNumDao.filter(teacher.getSchool());//ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 
 		//ビジネスロジック 4

@@ -144,8 +144,4 @@ public class TestDao extends Dao {
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git

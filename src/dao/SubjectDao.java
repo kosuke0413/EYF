@@ -12,31 +12,30 @@ import bean.Subject;
 
 public class SubjectDao extends Dao{
 
-	//ログインした学校別で値を取得するSQL文の元
 	private String baseSql = "select * from subject where school_cd=? ";
 
 //ゲット
-	public Subject get(String cd)throws Exception{
+	public Subject get(String cd,School school)throws Exception{
 
 		Subject subject=new Subject();
 		Connection connection=getConnection();
 		PreparedStatement statement=null;
 
 		try{   //科目コード別に作成
-			statement=connection.prepareStatement("select * from subject where cd=?");
+			statement=connection.prepareStatement("select * from subject where cd = ? and school_cd = ?");
 			statement.setString(1, cd);
+			statement.setString(2, school.getCd());
 
-			//ResultSet=「取得した値（selectによる検索値の獲得）
 			ResultSet rSet=statement.executeQuery();
 
 			SchoolDao schoolDao=new SchoolDao();
-
 			if (rSet.next()) {
 				subject.setCd(rSet.getString("cd"));
 				subject.setName(rSet.getString("name"));
 				//科目フィールドには学校コードで検索した学校インスタンスをセット
 				subject.setSchool(schoolDao.get(rSet.getString("school_cd")));
 				subject.setAttend(rSet.getBoolean("is_attend"));
+
 
 			} else {
 				//リザルトセットが存在しない場合
@@ -69,7 +68,6 @@ public class SubjectDao extends Dao{
 				subject.setCd(rSet. getString("cd"));
 				subject.setName (rSet. getString("name"));
 				subject.setSchool (school);
-				subject.setAttend(rSet. getBoolean("is_attend"));
 				//リストに追加
 				list.add(subject);
 			}
@@ -79,7 +77,7 @@ public class SubjectDao extends Dao{
 		return list;
 	}
 	//フィルター（出力）
-	public List<Subject> filter(School school,boolean isAttend)throws Exception {
+	public List<Subject> filter(School school)throws Exception {
 		//リストを初期化
 	    List<Subject> list = new ArrayList<>();
 	    //コネクションを確立
@@ -88,16 +86,9 @@ public class SubjectDao extends Dao{
 	    PreparedStatement statement = null;
 	    //リザルトセット
 	    ResultSet rSet = null;
-
-	    String conditionIsAttend = "";
-	    //在学フラグがtrueの場合
-	    if (isAttend) {
-	    conditionIsAttend = "and is_attend=true";
-	}
 	    try {
 		    //プリペアードステートメントにSQL文をセット
-		    statement = connection. prepareStatement (baseSql+ conditionIsAttend);
-
+		    statement = connection. prepareStatement (baseSql);
 		    //プリペアードステートメントに学校コードをバインド
 		    statement. setString(1, school. getCd ());
 		    // プライベートステートメントを実行
@@ -130,7 +121,6 @@ public class SubjectDao extends Dao{
 
 
 
-
 	//セーブ（更新＆作成用）
 	public boolean save(Subject subject) throws Exception {
 		//コネクションを確立
@@ -142,7 +132,7 @@ public class SubjectDao extends Dao{
 
 		try{
 			//データベースから科目を取得
-			Subject old = get(subject.getCd());
+			Subject old = get(subject.getCd(),subject.getSchool());
 			if (old == null) {
 				//科目（CD)が存在しなかった場合
 				//プリペアードステートメンにINSERT文をセット
@@ -193,40 +183,6 @@ public class SubjectDao extends Dao{
 			//実行件数が0件の場合
 			return false;
 		}
-
-}
-	public boolean delete(Subject subject) throws Exception {
-
-		//コネクションを確立
-				Connection connection = getConnection();
-				//プリペアードステートメント
-				PreparedStatement statement = null;
-				//実行件数
-				int count = 0;
-
-				try{   //科目コード別に作成
-					Subject old = get(subject.getCd());
-					statement=connection.prepareStatement("update subject set is_attend=false where cd=? and school_cd=?");
-					statement.setString(1, subject.getCd());
-					statement. setString(2, subject.getSchool().getCd());
-					count = statement.executeUpdate();
-				}catch(Exception e){
-					throw e;
-				}finally{
-					if(statement !=null){
-						try{
-							connection.close();
-						}catch(SQLException sqle){
-							throw sqle;
-						}
-					}
-				}
-
-				if(count > 0){
-					return true;
-				}else{
-					return false;
-				}
 
 
 

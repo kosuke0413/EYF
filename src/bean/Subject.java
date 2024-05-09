@@ -1,16 +1,13 @@
-
 package bean;
 import java.io.Serializable;
 
 public class Subject implements Serializable{
 
-	private static final boolean False = false;
 	//SBUJECTの中身を設定
 	private School School;
 	private String cd;
 	private String name;
 	private boolean isAttend;
-
 
 	//ゲッターとセッタ＝
 	public School getSchool() {
@@ -37,8 +34,6 @@ public class Subject implements Serializable{
 	public void setAttend(boolean isAttend) {
 		this.isAttend = isAttend;
 	}
-
-
 
 
 

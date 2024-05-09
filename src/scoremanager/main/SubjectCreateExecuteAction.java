@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.School;
 import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDao;
@@ -32,7 +33,7 @@ public class SubjectCreateExecuteAction extends Action {
 		ClassNumDao cNumDao = new ClassNumDao();// クラス番号Daoを初期化
 		Teacher teacher = (Teacher) session.getAttribute("user");// ログインユーザーを取得
 		LocalDate todaysDate = LocalDate.now();// LcalDateインスタンスを取得
-
+		School school = teacher.getSchool();
 
 		//リクエストパラメータ―の取得 2
 		cd = req.getParameter("cd");//学生番号
@@ -40,7 +41,7 @@ public class SubjectCreateExecuteAction extends Action {
 
 
 		//DBからデータ取得 3
-		subject = sDao.get(cd);// 学生番号から学生インスタンスを取得
+		subject = sDao.get(cd,school);// 学生番号から学生インスタンスを取得
 		List<String> list = cNumDao.filter(teacher.getSchool());// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 
 

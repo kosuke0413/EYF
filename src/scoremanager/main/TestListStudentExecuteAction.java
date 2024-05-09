@@ -28,7 +28,7 @@ public class TestListStudentExecuteAction extends Action {
 		Teacher teacher = (Teacher)session.getAttribute("user");//ログインユーザー
 		StudentDao sDao = new StudentDao();//学生Dao
 		String no = "";//学生番号
-		Student student = null;//学生
+		Student student = new Student();//学生
 		String stuName; //学生名
 		TestListStudentDao testLisStuDao = new TestListStudentDao();
 		List<TestListStudent> testStulist = null;
@@ -45,7 +45,7 @@ public class TestListStudentExecuteAction extends Action {
 		// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 		List<String> cNumlist = cNumDao.filter(teacher.getSchool());
 		//ログインユーザーの学校コードをもとに科目の一覧を取得
-		List<Subject> sublist = subDao.filter(teacher.getSchool());
+		List<Subject> sublist = subDao.filter(teacher.getSchool(),student.isAttend());
 
 		student = sDao.get(no);// 学生番号から学生インスタンスを取得
 		stuName = student.getName(); //学生番号から学生の名前を取得

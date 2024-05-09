@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Student;
 import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDao;
@@ -24,15 +25,14 @@ public class TestListAction extends Action {
 		HttpSession session = req.getSession();//セッション
 		Teacher teacher = (Teacher)session.getAttribute("user");//ログインユーザー
 
-<<<<<<< HEAD
+
 		String entYearStr="";// 入力された入学年度
 		String classNum = "";//入力されたクラス番号
 		String isAttendStr="";//入力された在学フラグ
 		int entYear = 0;// 入学年度
 		boolean isAttend = false;// 在学フラグ
 		List<Student> students = null;// 学生リスト
-=======
->>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
+
 		LocalDate todaysDate = LocalDate.now();// LcalDateインスタンスを取得
 		int year = todaysDate.getYear();// 現在の年を取得
 		ClassNumDao cNumDao = new ClassNumDao();// クラス番号Daoを初期化
@@ -60,15 +60,10 @@ public class TestListAction extends Action {
 		req.setAttribute("subject_list_set", sublist);//ログインしてる先生の学校の科目名をセット
 
 		//JSPへフォワード 7
-<<<<<<< HEAD
+
 		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
-=======
+
 		req.getRequestDispatcher("test_list.jsp").forward(req, res);
->>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
 	}
 
 }
-
-
-
-
