@@ -1,3 +1,4 @@
+
 package tool;
 
 public class ValidationException extends Exception {

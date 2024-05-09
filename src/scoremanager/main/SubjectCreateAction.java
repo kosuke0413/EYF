@@ -1,3 +1,4 @@
+
 //科目新規作成画面１
 package scoremanager.main;
 

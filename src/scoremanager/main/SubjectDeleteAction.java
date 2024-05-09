@@ -1,3 +1,4 @@
+
 package scoremanager.main;
 
 import java.util.HashMap;
@@ -32,6 +33,7 @@ public class SubjectDeleteAction extends Action {
 		Subject subject = sDao.get(cd);//科目コードから科目インスタンスを取得
 		List<String> list = cNumDao.filter(teacher.getSchool());//ログインユーザーの学校コードをもとに科目の一覧を取得
 
+			System.out.println("DeleteAction"+cd);
 
 		//ビジネスロジック 4
 		//DBへデータ保存 5
@@ -40,7 +42,6 @@ public class SubjectDeleteAction extends Action {
 		req.setAttribute("class_num_set", list);
 		if (subject != null) {// 科目が存在していた場合
 			req.setAttribute("cd", subject.getCd());
-			req.setAttribute("name", subject.getName());
 
 
 		} else {// 科目が存在していなかった場合

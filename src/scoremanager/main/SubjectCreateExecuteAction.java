@@ -1,3 +1,4 @@
+
 //新規登録画面２
 package scoremanager.main;
 

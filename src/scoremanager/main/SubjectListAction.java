@@ -1,3 +1,4 @@
+
 //科目一覧表示用画面
 
 package scoremanager.main;
@@ -28,6 +29,8 @@ public class SubjectListAction extends Action {
 
 		String nameStr="";// 科目名
 		String cdStr="";  //科目コード
+		String isAttendStr="";//入力された在学フラグ
+		boolean isAttend = true;// 在学フラグ
 		List<Subject> subjects = null;// 科目リスト→JSPにあげるやつ
 		LocalDate todaysDate = LocalDate.now();// LcalDateインスタンスを取得
 		SubjectDao sDao = new SubjectDao();//科目bDao
@@ -40,7 +43,13 @@ public class SubjectListAction extends Action {
 
 		nameStr = req.getParameter("f1");
 		cdStr = req.getParameter("f2");
-		subjects = sDao.filter(teacher.getSchool());  //学校別の科目
+		isAttendStr = req.getParameter("f3");
+		//ISATTENDがTRUEのものだけ表示する
+		if (isAttendStr != null) {
+			// 在学フラグを立てる
+			isAttend = true;
+		}
+		subjects = sDao.filter(teacher.getSchool(),isAttend);  //学校別の科目
 
 
 		req.setAttribute("f2", cdStr);
@@ -57,8 +66,3 @@ public class SubjectListAction extends Action {
 	}
 
 }
-
-
-
-
-

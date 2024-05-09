@@ -1,3 +1,4 @@
+
 package bean;
 
 import javax.security.auth.Subject;
@@ -80,6 +81,11 @@ public class Test {
 
 	public void setPoint(int point) {
 		this.point = point;
+	}
+
+	public void setSubject(bean.Subject subject2) {
+		// TODO 自動生成されたメソッド・スタブ
+
 	}
 
 

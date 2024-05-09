@@ -1,5 +1,8 @@
+
 package scoremanager.main;
 
-public class TestListSubjectExecuteAction {
+import tool.Action;
+
+public class TestListSubjectExecuteAction extends Action{
 
 }

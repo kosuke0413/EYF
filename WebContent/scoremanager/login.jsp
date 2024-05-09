@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -47,6 +48,10 @@
 	 <label>学校コード</label>
 	<input type="text" name="school_cd" value="knz">
 	 -->
+
+	 <c:forEach var="error" items="${errors}">
+	 <li>${errors}</li>
+	 </c:forEach>
 
 	<!-- ログイン用ボタン -->
 	<input type="submit" name="login" value="ログイン"/>

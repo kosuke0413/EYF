@@ -1,3 +1,4 @@
+
 package scoremanager.main;
 
 import java.time.LocalDate;
@@ -105,11 +106,8 @@ public class StudentListAction extends Action {
 		req.setAttribute("ent_year_set", entYearSet);
 		//JSPへフォワード 7
 		req.getRequestDispatcher("student_list.jsp").forward(req, res);
+
+		session.removeAttribute("subjectdelet");
 	}
 
 }
-
-
-
-
-

@@ -1,3 +1,4 @@
+
 <%-- 科目一覧JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -34,7 +35,7 @@
 						</td>
 		<!-- 削除はまだできてない -->
 		 <td><a href="SubjectUpdate.action?cd=${subject.cd}">変更</a></td>
-		<td><a href="StudentUpdate.action?no=${student.cd}">削除</a></td>
+		<td><a href="SubjectDelete.action?cd=${subject.cd}">削除</a></td>
 					</tr>
 				</c:forEach>
 

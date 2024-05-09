@@ -1,3 +1,4 @@
+
 package scoremanager.main;
 
 import java.util.HashMap;
@@ -23,21 +24,41 @@ public void execute(HttpServletRequest req, HttpServletResponse res) throws Exce
 	Map<String, String> errors = new HashMap<>();//エラーメッセージ
 
 	//リクエストパラメータ―の取得 2
-	String cd = req.getParameter("cd");
-	//String name = req.getParameter("name");
+	//リクエストパラメータ―の取得 2
+			String cd = req.getParameter("cd");
+			System.out.println(cd);
 
-	//DBからデータ取得 3
-	Subject subject = sDao.get(cd);// 科目コードから科目インスタンスを取得
-	@SuppressWarnings("unchecked")
-	List<Subject> subjectdelet=(List<Subject>)session.getAttribute("subjectdelet");
+			//DBからデータ取得 3
+			Subject subject = sDao.get(cd);// 科目コードから科目インスタンスを取得
+			List<String> list = cNumDao.filter(teacher.getSchool());//ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 
-	for (Subject i : subjectdelet) {
-			if (((Subject) i).getCd()==cd) {
-				subjectdelet.remove(i);
-				break;
+			//ビジネスロジック 4
+			//DBへデータ保存 5
+			//条件で4～5が分岐
+
+			System.out.println("DeleteExecute"+cd);
+			if (subject != null) {
+				// 科目が存在していた場合
+				// インスタンスに値をセット
+				subject.setCd(cd);
+
+				sDao.delete(subject);
+			} else {
+				errors.put("cd", "学生が存在していません");
 			}
-		}
 
-	req.getRequestDispatcher("subject_delete_done.jsp").forward(req, res);
+			//エラーがあったかどうかで手順6~7の内容が分岐
+			//レスポンス値をセット 6
+			//JSPへフォワード 7
+
+			if(!errors.isEmpty()){//エラーがあった場合、更新画面へ戻る
+				// リクエスト属性をセット
+				req.setAttribute("errors", errors);
+				req.setAttribute("cd", cd);
+				req.getRequestDispatcher("subject_delete.jsp").forward(req, res);
+				return;
+			}
+
+			req.getRequestDispatcher("subject_delete_done.jsp").forward(req, res);
+		}
 	}
-}
