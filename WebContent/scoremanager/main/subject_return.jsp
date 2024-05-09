@@ -10,9 +10,7 @@
 </head>
 <body>
 
-	<h2>科目管理</h2>
-<a href="SubjectCreate.action">☆新規登録</a>
-<a href="SubjectReturn.action">☆ゴミ箱</a>
+	<h2>科目ゴミ箱</h2>
 <form method="get">
 	</form>
 	<c:choose>
@@ -34,8 +32,7 @@
 
 						</td>
 		<!-- 削除はまだできてない -->
-		 <td><a href="SubjectUpdate.action?cd=${subject.cd}">変更</a></td>
-		<td><a href="SubjectDelete.action?cd=${subject.cd}">削除</a></td>
+		 <td><a href="SubjectReturnExecute.action?cd=${subject.cd}">元に戻す</a></td>
 					</tr>
 				</c:forEach>
 
@@ -45,7 +42,7 @@
 			<div>学生情報が存在しませんでした</div>
 		</c:otherwise>
 	</c:choose>
-	<a href="Menu.action">メインへ戻る</a>
+	<a href="SubjectList.action">メインへ戻る</a>
 
 </body>
 </html>
