@@ -122,14 +122,16 @@ public class SubjectDao extends Dao{
 
 
 	//セーブ（更新＆作成用）
-	public boolean save(Subject subject) throws Exception {
-		//コネクションを確立
-		Connection connection = getConnection();
-		//プリペアードステートメント
-		PreparedStatement statement = null;
-		//実行件数
-		int count = 0;
+	//セーブ（更新＆作成用）
+		public boolean save(Subject subject) throws Exception {
+			//コネクションを確立
+			Connection connection = getConnection();
+			//プリペアードステートメント
+			PreparedStatement statement = null;
+			//実行件数
+			int count = 0;
 
+<<<<<<< HEAD
 		try{
 			//データベースから科目を取得
 			Subject old = get(subject.getCd(),subject.getSchool());
@@ -142,39 +144,63 @@ public class SubjectDao extends Dao{
 				statement.setString(1, subject.getSchool().getCd());
 				statement.setString(2,subject.getCd());
 				statement.setString(3,subject.getName());
+=======
+			try{
+				//データベースから科目を取得
+				Subject old = get(subject.getCd(),subject.getSchool());
+				if (old == null) {
+					//科目（CD)が存在しなかった場合
+					//プリペアードステートメンにINSERT文をセット
+					statement = connection.prepareStatement(
+							"insert into subject (school_cd, cd, name,) values(?, ?, ?,) ");
+					//プリペアードステートメントに値をバインド
+					statement.setString(1, subject.getSchool().getCd());
+					statement.setString(2,subject.getCd());
+					statement.setString(3,subject.getName());
+				} else {
+					//学生が存在した場合
+					//プリペアードステートメントにUPDATE文をセット
+					statement = connection
+							.prepareStatement("update subject set name=? where cd=?");
+					//プリペアードステートメントに値をバインド
+					statement.setString(2,subject.getCd());
+					statement.setString(1,subject.getName());
+				}
+
+				//プリペアードステートメントを実行
+				count = statement.executeUpdate();
+
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				//
+				if(statement != null) {
+					try {
+						statement.close();
+					} catch (SQLException sqle) {
+						throw sqle;
+					}
+				}
+
+				if(connection != null) {
+					try {
+						connection.close();
+					} catch (SQLException sqle) {
+						throw sqle;
+					}
+				}
+			}
+			if (count > 0) {
+				//実行件数が1以上ある場合
+				return true;
+>>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
 			} else {
-				//学生が存在した場合
-				//プリペアードステートメントにUPDATE文をセット
-				statement = connection
-						.prepareStatement("update subject set name=? where cd=?");
-				//プリペアードステートメントに値をバインド
-				statement.setString(2,subject.getCd());
-				statement.setString(1,subject.getName());
+				//実行件数が0件の場合
+				return false;
 			}
 
-			//プリペアードステートメントを実行
-			count = statement.executeUpdate();
-
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			//
-			if(statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-
-			if(connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
 		}
+<<<<<<< HEAD
 
 		if (count > 0) {
 			//実行件数が1以上ある場合
@@ -183,6 +209,40 @@ public class SubjectDao extends Dao{
 			//実行件数が0件の場合
 			return false;
 		}
+=======
+	public boolean delete(Subject subject) throws Exception {
+
+		//コネクションを確立
+				Connection connection = getConnection();
+				//プリペアードステートメント
+				PreparedStatement statement = null;
+				//実行件数
+				int count = 0;
+
+				try{   //科目コード別に作成
+					Subject old = get(subject.getCd(),subject.getSchool());
+					statement=connection.prepareStatement("update subject set is_attend=false where cd=? and school_cd=?");
+					statement.setString(1, subject.getCd());
+					statement. setString(2, subject.getSchool().getCd());
+					count = statement.executeUpdate();
+				}catch(Exception e){
+					throw e;
+				}finally{
+					if(statement !=null){
+						try{
+							connection.close();
+						}catch(SQLException sqle){
+							throw sqle;
+						}
+					}
+				}
+
+				if(count > 0){
+					return true;
+				}else{
+					return false;
+				}
+>>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
 
 
 

@@ -58,6 +58,8 @@ public class LoginExecuteAction extends Action{
 
 			//セッションに"user"という変数名で値はTeacher変数の中身
 			session.setAttribute("user", teacher);
+
+
 				//リダイレクト
 			url = "main/Menu.action";
 			res.sendRedirect(url);

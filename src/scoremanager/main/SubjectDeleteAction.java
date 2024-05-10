@@ -32,10 +32,13 @@ public class SubjectDeleteAction extends Action {
 		String cd = req.getParameter("cd");//科目コード
 
 		//DBからデータ取得 3
+<<<<<<< HEAD
 		Subject subject = sDao.get(cd,school);//科目コードから科目インスタンスを取得
+=======
+		Subject subject = sDao.get(cd,teacher.getSchool());//科目コードから科目インスタンスを取得
+>>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
 		List<String> list = cNumDao.filter(teacher.getSchool());//ログインユーザーの学校コードをもとに科目の一覧を取得
 
-			System.out.println("DeleteAction"+cd);
 
 		//ビジネスロジック 4
 		//DBへデータ保存 5
