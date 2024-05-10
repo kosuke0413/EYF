@@ -49,7 +49,7 @@ public class SubjectListAction extends Action {
 			// 在学フラグを立てる
 			isAttend = true;
 		}
-		subjects = sDao.filter(teacher.getSchool(),isAttend);  //学校別の科目
+		subjects = sDao.filter(teacher.getSchool());  //学校別の科目
 
 
 		req.setAttribute("f2", cdStr);

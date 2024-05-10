@@ -41,11 +41,11 @@ public class SubjectCreateExecuteAction extends Action {
 
 
 		//DBからデータ取得 3
-<<<<<<< HEAD
+
 		subject = sDao.get(cd,school);// 学生番号から学生インスタンスを取得
-=======
+
 		subject = sDao.get(cd,teacher.getSchool());// 学生番号から学生インスタンスを取得
->>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
+
 		List<String> list = cNumDao.filter(teacher.getSchool());// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 
 

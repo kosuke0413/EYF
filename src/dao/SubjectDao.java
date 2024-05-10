@@ -138,10 +138,6 @@ public class SubjectDao extends Dao{
 	    try {
 		    //プリペアードステートメントにSQL文をセット
 		    statement = connection. prepareStatement (baseSql+ conditionIsAttend);
-
-<<<<<<< HEAD
-	//セーブ（更新＆作成用）
-=======
 		    //プリペアードステートメントに学校コードをバインド
 		    statement. setString(1, school. getCd ());
 		    // プライベートステートメントを実行
@@ -172,7 +168,6 @@ public class SubjectDao extends Dao{
 		return list;
 	}
 
->>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
 	//セーブ（更新＆作成用）
 		public boolean save(Subject subject) throws Exception {
 			//コネクションを確立
@@ -182,20 +177,7 @@ public class SubjectDao extends Dao{
 			//実行件数
 			int count = 0;
 
-<<<<<<< HEAD
-		try{
-			//データベースから科目を取得
-			Subject old = get(subject.getCd(),subject.getSchool());
-			if (old == null) {
-				//科目（CD)が存在しなかった場合
-				//プリペアードステートメンにINSERT文をセット
-				statement = connection.prepareStatement(
-						"insert into subject (school_cd, cd, name,) values(?, ?, ?,) ");
-				//プリペアードステートメントに値をバインド
-				statement.setString(1, subject.getSchool().getCd());
-				statement.setString(2,subject.getCd());
-				statement.setString(3,subject.getName());
-=======
+
 			try{
 				//データベースから科目を取得
 				Subject old = get(subject.getCd(),subject.getSchool());
@@ -244,23 +226,14 @@ public class SubjectDao extends Dao{
 			if (count > 0) {
 				//実行件数が1以上ある場合
 				return true;
->>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
+
 			} else {
 				//実行件数が0件の場合
 				return false;
 			}
 
-		}
-<<<<<<< HEAD
+			}
 
-		if (count > 0) {
-			//実行件数が1以上ある場合
-			return true;
-		} else {
-			//実行件数が0件の場合
-			return false;
-		}
-=======
 	public boolean delete(Subject subject) throws Exception {
 
 		//コネクションを確立
@@ -293,12 +266,7 @@ public class SubjectDao extends Dao{
 				}else{
 					return false;
 				}
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
-=======
-}
->>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
-
+	}
 
 	//削除した科目を復元させる
 	public boolean delete_return(Subject subject) throws Exception {

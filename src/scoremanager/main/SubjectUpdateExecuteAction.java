@@ -32,11 +32,8 @@ public class SubjectUpdateExecuteAction extends Action {
 		String name = req.getParameter("name");
 
 		//DBからデータ取得 3
-<<<<<<< HEAD
-		Subject subject = sDao.get(cd,school);// 科目コードから科目インスタンスを取得
-=======
 		Subject subject = sDao.get(cd,teacher.getSchool());// 科目コードから科目インスタンスを取得
->>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
+
 		List<String> list = cNumDao.filter(teacher.getSchool());//ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 
 		//ビジネスロジック 4
