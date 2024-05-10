@@ -16,7 +16,6 @@
 		<label>科目番号</label>
 		<input type="hidden" name="cd" value="${cd}">
 	   <p>${cd}</p>
-
 		<p>を削除しますか？</p>
 
 		<input type="submit" value="削除">
