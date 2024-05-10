@@ -119,9 +119,60 @@ public class SubjectDao extends Dao{
 		return list;
 	}
 
+	//フィルター（出力）(削除済みのもののみ）
+	public List<Subject> filter_return(School school,boolean isAttend)throws Exception {
+		//リストを初期化
+	    List<Subject> list = new ArrayList<>();
+	    //コネクションを確立
+	    Connection connection = getConnection();
+	    //プリペアードステートメント
+	    PreparedStatement statement = null;
+	    //リザルトセット
+	    ResultSet rSet = null;
 
+	    String conditionIsAttend = "";
+	    //在学フラグがtrueの場合
+	    if (isAttend) {
+	    conditionIsAttend = "and is_attend=false";
+	}
+	    try {
+		    //プリペアードステートメントにSQL文をセット
+		    statement = connection. prepareStatement (baseSql+ conditionIsAttend);
 
+<<<<<<< HEAD
 	//セーブ（更新＆作成用）
+=======
+		    //プリペアードステートメントに学校コードをバインド
+		    statement. setString(1, school. getCd ());
+		    // プライベートステートメントを実行
+		    rSet = statement.executeQuery ();
+		    //帰ってきたResultSet型をStudent型に変えて結果をセットする
+		    list = postFilter(rSet,school);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			//
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+		//listを返す
+		return list;
+	}
+
+>>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
 	//セーブ（更新＆作成用）
 		public boolean save(Subject subject) throws Exception {
 			//コネクションを確立
@@ -242,9 +293,44 @@ public class SubjectDao extends Dao{
 				}else{
 					return false;
 				}
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
+=======
+}
 >>>>>>> branch 'master' of https://github.com/kosuke0413/EYF.git
 
 
+	//削除した科目を復元させる
+	public boolean delete_return(Subject subject) throws Exception {
 
+		//コネクションを確立
+				Connection connection = getConnection();
+				//プリペアードステートメント
+				PreparedStatement statement = null;
+				//実行件数
+				int count = 0;
 
-	}}
+				try{   //科目コード別に作成
+					Subject old = get(subject.getCd(),subject.getSchool());
+					statement=connection.prepareStatement("update subject set is_attend=true where cd=? and school_cd=?");
+					statement.setString(1, subject.getCd());
+					statement. setString(2, subject.getSchool().getCd());
+					count = statement.executeUpdate();
+				}catch(Exception e){
+					throw e;
+				}finally{
+					if(statement !=null){
+						try{
+							connection.close();
+						}catch(SQLException sqle){
+							throw sqle;
+						}
+					}
+				}
+
+				if(count > 0){
+					return true;
+				}else{
+					return false;
+				}
+}}
